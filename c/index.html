@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="vue">
+        <h2>Todo</h2>
+
+        <div id="custom_input">
+            <input type="text" v-model="value" placeholder="Введите дело">
+            <button @click="addTodo">Добавить</button>
+        </div>
+
+        <h4 v-if="err">{{err}}</h4>
+        
+        <hr/>
+        <ul v-if="todos.length != 0">
+            <li v-for="el in todos">
+                <h3 v-if="!el.chk">{{el.name}}</h3>
+                <h3 v-else style = "color: rgb(125, 255, 125);">{{el.name}}</h3>
+                <div class="btn">
+                    <div class="del" @click="del(el._id)">x</div>
+                    <div v-if="!el.chk" class="chk" @click="check(el._id)">+</div>
+                </div>
+            </li>
+        
+        </ul>
+
+        <p v-else>Нет заметок!</p>
+    </div>
+    
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
